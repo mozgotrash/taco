@@ -14,42 +14,42 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class HomePageBrowserTest {
 
-  @LocalServerPort
-  private int port;
-  private static HtmlUnitDriver browser;  
-  
-  @BeforeAll
-  public static void setup() {
-    browser = new HtmlUnitDriver();
-    
-    browser.manage().timeouts()
-          .implicitlyWait(10, TimeUnit.SECONDS);
-  }
-  
-  @AfterAll
-  public static void teardown() {
-    browser.quit();
-  }
-  
-  @Test
-  public void testHomePage() {
-    String homePage = "http://localhost:" + port;
-    browser.get(homePage);
-    
-    String titleText = browser.getTitle();
-    Assertions.assertThat(titleText).isEqualTo("Taco Cloud");
-    
-    String h1Text = browser.findElementByTagName("h1").getText();
-    Assertions.assertThat(h1Text).isEqualTo("Welcome to...");
+    @LocalServerPort
+    private int port;
+    private static HtmlUnitDriver browser;
 
-    
-    String imgSrc = browser.findElementByTagName("img")
-                                              .getAttribute("src");
-    Assertions.assertThat(imgSrc).isEqualTo(homePage + "/images/TacoCloud.png");
-  }
-  
-  
+    @BeforeAll
+    public static void setup() {
+        browser = new HtmlUnitDriver();
+
+        browser.manage().timeouts()
+                .implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @AfterAll
+    public static void teardown() {
+        browser.quit();
+    }
+
+    @Test
+    public void testHomePage() {
+        String homePage = "http://localhost:" + port;
+        browser.get(homePage);
+
+        String titleText = browser.getTitle();
+        Assertions.assertThat(titleText).isEqualTo("Taco Cloud");
+
+        String h1Text = browser.findElementByTagName("h1").getText();
+        Assertions.assertThat(h1Text).isEqualTo("Welcome to...");
+
+
+        String imgSrc = browser.findElementByTagName("img")
+                .getAttribute("src");
+        Assertions.assertThat(imgSrc).isEqualTo(homePage + "/images/TacoCloud.png");
+    }
+
+
 }

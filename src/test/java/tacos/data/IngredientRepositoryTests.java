@@ -15,21 +15,21 @@ import tacos.Ingredient.Type;
 @SpringBootTest
 public class IngredientRepositoryTests {
 
-  @Autowired
-  IngredientRepository ingredientRepo;
-  
-  @Autowired
-  JdbcTemplate jdbc;
-  
-  @Test
-  public void findById() {
-    Optional<Ingredient> flto = ingredientRepo.findById("FLTO");
-    assertThat(flto.isPresent()).isTrue();
-    assertThat(flto.get()).isEqualTo(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
-    
-    Optional<Ingredient> xxxx = ingredientRepo.findById("XXXX");
-    assertThat(xxxx.isEmpty()).isTrue();
+    @Autowired
+    IngredientRepository ingredientRepo;
 
-  }
-  
+    @Autowired
+    JdbcTemplate jdbc;
+
+    @Test
+    public void findById() {
+        Optional<Ingredient> flto = ingredientRepo.findById("FLTO");
+        assertThat(flto.isPresent()).isTrue();
+        assertThat(flto.get()).isEqualTo(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
+
+        Optional<Ingredient> xxxx = ingredientRepo.findById("XXXX");
+        assertThat(xxxx.isEmpty()).isTrue();
+
+    }
+
 }

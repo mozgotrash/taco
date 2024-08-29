@@ -21,22 +21,22 @@ import tacos.data.OrderRepository;
 @WebMvcTest
 public class HomeControllerTest {
 
-  @Autowired
-  private MockMvc mockMvc;
-  
-  @MockBean
-  private IngredientRepository ingredientRepository;
+    @Autowired
+    private MockMvc mockMvc;
 
-  @MockBean
-  private OrderRepository orderRepository;
+    @MockBean
+    private IngredientRepository ingredientRepository;
 
-  @Test
-  public void testHomePage() throws Exception {
-    mockMvc.perform(get("/"))
-      .andExpect(status().isOk())
-      .andExpect(view().name("home"))
-      .andExpect(content().string(
-          containsString("Welcome to...")));  
-  }
+    @MockBean
+    private OrderRepository orderRepository;
+
+    @Test
+    public void testHomePage() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(content().string(
+                        containsString("Welcome to...")));
+    }
 
 }
